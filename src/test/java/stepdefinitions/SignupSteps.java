@@ -2,8 +2,6 @@ package stepdefinitions;
 
 import cucumber.api.java8.En;
 
-import java.sql.SQLOutput;
-
 public class SignupSteps implements En {
     public SignupSteps() {
         Given("^I have opened homepage$", () -> {
