@@ -1,4 +1,4 @@
-#.idea/
-#build/
-#target/
-#*.iml
+.idea/
+build/
+target/
+*.iml
