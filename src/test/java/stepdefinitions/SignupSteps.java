@@ -1,53 +1,60 @@
 package stepdefinitions;
 
 import cucumber.api.java.en.*;
-import cucumber.api.java8.En;
-import general.User;
-import pages.signup.SignUpPageObject;
+import general.TestContext;
 
-public class SignupSteps implements En {
+public class SignupSteps {
 
-    private SignUpPageObject signup = new SignUpPageObject();
-    private User user = new User();
+    private TestContext test;
 
-    @And("^I enter First name$")
-    public void iEnterFirstName() {
-        signup.enterFirstName(user.getFirstName());
+    public SignupSteps(TestContext testContext) {
+        this.test = testContext;
     }
 
-    @And("^I enter Last name$")
-    public void iEnterLastName() {
-        signup.enterLastName(user.getLastName());
-    }
-
-    @And("^I enter Mobile number$")
-    public void iEnterMobileNumber() {
-        signup.enterMobileNumber(user.getMobileNumber());
-    }
-
-    @And("^I enter Email address$")
-    public void iEnterEmailAddress() {
-        signup.enterEmail(user.getEmailAddress());
-    }
-
-    @And("^I enter Password$")
-    public void iEnterPassword() {
-        signup.enterPassword(user.getPassword());
-    }
-
-    @And("^I confirm Password$")
-    public void iConfirmPassword() {
-        signup.enterConfirmationPassword(user.getPassword());
-    }
-
-    @Given("I create new account")
-    public void iCreateNewAccount() {
+    @Given("^I have created new account$")
+    public void createNewAccount() {
         iEnterFirstName();
         iEnterLastName();
         iEnterMobileNumber();
         iEnterEmailAddress();
         iEnterPassword();
         iConfirmPassword();
+        iSelectSignUpButtonInSignUpPage();
+    }
+
+    @And("^I enter First name$")
+    public void iEnterFirstName() {
+        test.getSignUpPage().enterFirstName(test.getUser().getFirstName());
+    }
+
+    @And("^I enter Last name$")
+    public void iEnterLastName() {
+        test.getSignUpPage().enterLastName(test.getUser().getLastName());
+    }
+
+    @And("^I enter Mobile number$")
+    public void iEnterMobileNumber() {
+        test.getSignUpPage().enterMobileNumber(test.getUser().getMobileNumber());
+    }
+
+    @And("^I enter Email address$")
+    public void iEnterEmailAddress() {
+        test.getSignUpPage().enterEmail(test.getUser().getEmailAddress());
+    }
+
+    @And("^I enter Password$")
+    public void iEnterPassword() {
+        test.getSignUpPage().enterPassword(test.getUser().getPassword());
+    }
+
+    @And("^I confirm Password$")
+    public void iConfirmPassword() {
+        test.getSignUpPage().enterConfirmationPassword(test.getUser().getPassword());
+    }
+
+    @And("^I select Sign up button in Sign up page$")
+    public void iSelectSignUpButtonInSignUpPage() {
+        test.getSignUpPage().selectSignUpButton();
     }
 
 }

@@ -9,39 +9,19 @@ import static com.codeborne.selenide.Selenide.page;
 public class LoginPageObject {
 
     private SelenideElement getEmailField() {
-        return $("test");
+        return $("input[name='username']");
     }
 
     private SelenideElement getPasswordField() {
-        return $("test");
+        return $("input[name='password']");
     }
 
     private SelenideElement getRememberMeCheckBox() {
-        return $("test");
+        return $("#remember-me");
     }
 
     private SelenideElement getLoginButton() {
-        return $("test");
-    }
-
-    private SelenideElement getSignUpButton() {
-        return $("test");
-    }
-
-    private SelenideElement getForgetPasswordButton() {
-        return $("test");
-    }
-
-    private SelenideElement getForgetPasswordPopupEmailField() {
-        return $("test");
-    }
-
-    private SelenideElement getForgetPasswordPopupResetButton() {
-        return $("test");
-    }
-
-    private SelenideElement getForgetPasswordPopupCloseButton() {
-        return $("test");
+        return $("#loginfrm .loginbtn");
     }
 
     public void enterEmail(String email) {
@@ -59,26 +39,5 @@ public class LoginPageObject {
     public AccountPageObject selectLoginButton() {
         getLoginButton().click();
         return page(AccountPageObject.class);
-    }
-
-    public AccountPageObject selectSignUpButton() {
-        getSignUpButton().click();
-        return page(AccountPageObject.class);
-    }
-
-    public void selectForgetPasswordButton() {
-        getForgetPasswordButton().click();
-    }
-
-    public void enterForgetPassowrdEmail(String email) {
-        getForgetPasswordPopupEmailField().sendKeys(email);
-    }
-
-    public void selectForgetPasswordPopupCloseButton() {
-        getForgetPasswordPopupCloseButton().click();
-    }
-
-    public void selectForgetPasswordPopupResetButton() {
-        getForgetPasswordPopupResetButton().click();
     }
 }
