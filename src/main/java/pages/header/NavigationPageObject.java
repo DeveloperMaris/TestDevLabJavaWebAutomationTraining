@@ -12,6 +12,10 @@ import static com.codeborne.selenide.Selenide.page;
 
 public class NavigationPageObject {
 
+    private SelenideElement getHomeButton() {
+        return $(By.xpath("//nav/descendant::a[contains(text(), 'Home')]"));
+    }
+
     private SelenideElement getMyAccountButton() {
         return $(By.xpath("//nav/descendant::li[@id = 'li_myaccount']/a"));
     }
@@ -30,6 +34,11 @@ public class NavigationPageObject {
 
     private SelenideElement getUserAccountButton(String username) {
         return $(By.xpath("//nav/descendant::a[contains(text(), '" + username + "')]"));
+    }
+
+    public BookHotelsPageObject selectHomeButton() {
+        getHomeButton().click();
+        return page(BookHotelsPageObject.class);
     }
 
     public void selectMyAccountButton() {

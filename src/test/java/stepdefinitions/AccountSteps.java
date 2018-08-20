@@ -1,5 +1,6 @@
 package stepdefinitions;
 
+import cucumber.api.PendingException;
 import cucumber.api.java.en.*;
 import general.TestContext;
 
@@ -25,4 +26,10 @@ public class AccountSteps {
     public void iSelectUserAccountButton() {
         test.getNavigation().selectUserAccountButton(test.getUser().getFirstName());
     }
+
+    @When("^I select Home button in Navigation bar$")
+    public void iSelectHomeButtonInNavigationBar() {
+        test.getNavigation().selectHomeButton();
+    }
+
 }

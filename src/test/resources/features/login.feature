@@ -2,7 +2,7 @@ Feature: This feature is about logging into the system
 
   Scenario: Successful login
     Given I have opened homepage
-      And I am in Sign up form
+      And I am in Signup form
       And I have created new account
       And I select User Account button
       And I logout
