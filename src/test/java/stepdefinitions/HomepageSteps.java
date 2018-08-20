@@ -1,12 +1,15 @@
 package stepdefinitions;
 
 import cucumber.api.java.en.*;
-import cucumber.api.java8.En;
-import pages.header.NavigationPageObject;
+import general.TestContext;
 
-public class HomepageSteps implements En {
+public class HomepageSteps {
 
-    private NavigationPageObject homepage = new NavigationPageObject();
+    private TestContext test;
+
+    public HomepageSteps(TestContext testContext) {
+        this.test = testContext;
+    }
 
     @Given("^I have opened homepage$")
     public void iHaveOpenedHomePage() {
@@ -15,34 +18,24 @@ public class HomepageSteps implements En {
 
     @When("^I select My account menu$")
     public void iSelectMyAccountMenu() {
-        homepage.selectMyAccountButton();
+        test.getNavigation().selectMyAccountButton();
     }
 
-    @When("^I select Sign up button$")
+    @And("^I select Sign up button in Landing page")
     public void iSelectSignUpButton() {
-        homepage.selectSignUpButton();
+        test.getNavigation().selectSignUpButton();
     }
 
-    @When("^I select Login button$")
+    @And("^I select Login button in Landing page$")
     public void iSelectLoginButton() {
-        homepage.selectLoginButton();
+        test.getNavigation().selectLoginButton();
     }
 
-    @When("^I select Logout button$")
-    public void iSelectLogoutButton() {
-        homepage.selectLogoutButton();
-    }
-
-    @When("^I navigate to Sign up page$")
-    public void iNavigateToSignUpPage() {
+    @And("^I am in Sign up form$")
+    public void iAmInSignUpForm() {
+        iHaveOpenedHomePage();
         iSelectMyAccountMenu();
         iSelectSignUpButton();
-    }
-
-    @When("^I navigate to Login page$")
-    public void iNavigateToLoginPage() {
-        iSelectMyAccountMenu();
-        iSelectLoginButton();
     }
 
 }

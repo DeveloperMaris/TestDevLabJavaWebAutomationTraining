@@ -1,11 +1,28 @@
 package stepdefinitions;
 
-import cucumber.api.java8.En;
+import cucumber.api.java.en.*;
+import general.TestContext;
 
-public class AccountSteps implements En {
-    public AccountSteps() {
-        Then("^user account page is opened$", () -> {
-            System.out.println("ACCOUNT PAGE IS OPENED");
-        });
+public class AccountSteps {
+
+    private TestContext test;
+
+    public AccountSteps(TestContext testContext) {
+        this.test = testContext;
+    }
+
+    @Then("^user account page is opened$")
+    public void userAccountPageIsOpened() {
+        System.out.println("ACCOUNT PAGE IS OPENED");
+    }
+
+    @And("^I logout$")
+    public void iLogout() {
+        test.getNavigation().selectLogoutButton();
+    }
+
+    @And("^I select User Account button$")
+    public void iSelectUserAccountButton() {
+        test.getNavigation().selectUserAccountButton(test.getUser().getFirstName());
     }
 }
