@@ -1,6 +1,5 @@
 package stepdefinitions;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.*;
 import general.TestContext;
 
@@ -47,7 +46,6 @@ public class HomepageSteps {
 
     @And("^I enter ([^\\”]*) hotel$")
     public void iEnterHotelName(String hotel) {
-        test.getBookHotelsPage().selectHotelField();
         test.getBookHotelsPage().enterHotelName(hotel);
     }
 
@@ -66,8 +64,19 @@ public class HomepageSteps {
         test.getBookHotelsPage().enterCheckOutDate(day, month, year);
     }
 
-    @And("^I select (\\d+) Adult and (\\d+) Children$")
-    public void iSelectAdultAndChildren(int adultCount, int childrenCount) {
-        // TODO: ...
+    @And("^I select (\\w+) Adult and (\\w+) Children$")
+    public void iSelectAdultAndChildren(String adultCount, String childrenCount) {
+        test.getBookHotelsPage().selectTravelersField();
+
+        test.getBookHotelsPage().selectTravelerAdultField();
+        test.getBookHotelsPage().enterTravelerAdultCount(adultCount);
+
+        test.getBookHotelsPage().selectTravelerChildField();
+        test.getBookHotelsPage().enterTravelerChildCount(childrenCount);
+    }
+
+    @And("^I select Search button$")
+    public void iSelectSearchButton() {
+        test.getBookHotelsPage().selectHotelSubmitButton();
     }
 }

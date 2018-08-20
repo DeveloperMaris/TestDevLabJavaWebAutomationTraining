@@ -2,8 +2,10 @@ package pages.landingPage;
 
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
+import pages.hotel.HotelDetailsPageObject;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.page;
 
 public class BookHotelsPageObject {
 
@@ -25,6 +27,22 @@ public class BookHotelsPageObject {
 
     private SelenideElement getCheckOutTextField() {
         return $("input[name='checkout']");
+    }
+
+    private SelenideElement getTravelersTextField() {
+        return $("#travellersInput");
+    }
+
+    private SelenideElement getTravelerAdultsTextField() {
+        return $("#adultInput");
+    }
+
+    private SelenideElement getTravelerChildTextField() {
+        return $("#childInput");
+    }
+
+    private SelenideElement getHotelSubmitButton() {
+        return $("form[name='fCustomHotelSearch'] button[type='submit']");
     }
 
     public void selectBookHotelsButton() {
@@ -50,4 +68,32 @@ public class BookHotelsPageObject {
     public void enterCheckOutDate(String day, String month, String year) {
         getCheckOutTextField().sendKeys(day + "/" + month + "/" + year);
     }
+
+    public void selectTravelersField() {
+        getTravelersTextField().click();
+    }
+
+    public void selectTravelerAdultField() {
+        getTravelerAdultsTextField().click();
+    }
+
+    public void enterTravelerAdultCount(String count) {
+        getTravelerAdultsTextField().clear();
+        getTravelerAdultsTextField().sendKeys(count);
+    }
+
+    public void selectTravelerChildField() {
+        getTravelerChildTextField().click();
+    }
+
+    public void enterTravelerChildCount(String count) {
+        getTravelerChildTextField().clear();
+        getTravelerChildTextField().sendKeys(count);
+    }
+
+    public HotelDetailsPageObject selectHotelSubmitButton() {
+        getHotelSubmitButton().click();
+        return page(HotelDetailsPageObject.class);
+    }
+
 }

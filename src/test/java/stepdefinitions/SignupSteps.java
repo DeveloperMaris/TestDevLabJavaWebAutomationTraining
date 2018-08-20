@@ -20,6 +20,16 @@ public class SignupSteps {
         iEnterPassword();
         iConfirmPassword();
         iSelectSignUpButtonInSignUpPage();
+
+        // It doesn't seem effective / correct to use "sleep", but by doing this - it makes the magic happen :)
+        // But to be more precise, in `bookHotel` feature file, there are step that after creating a user
+        // TestRunner tries to click on the "Home" button in navigation bar. Without "sleep" it presses the button while
+        // the Account page hasn't loaded yet. Account creation is using ajax requests.
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     @And("^I enter First name$")
