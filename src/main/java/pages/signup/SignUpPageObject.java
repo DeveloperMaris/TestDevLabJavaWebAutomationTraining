@@ -1,9 +1,12 @@
 package pages.signup;
 
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import pages.account.AccountPageObject;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selenide.page;
 
 public class SignUpPageObject {
@@ -36,6 +39,18 @@ public class SignUpPageObject {
         return $("#headersignupform .signupbtn");
     }
 
+    private SelenideElement getFormTitle() {
+        return $(".panel-heading");
+    }
+
+    private SelenideElement getErrorField() {
+        return $(".alert-danger");
+    }
+
+    private ElementsCollection getErrorList() {
+        return $$(".alert-danger p");
+    }
+
     public void enterFirstName(String firstName) {
         getFirstNameField().sendKeys(firstName);
     }
@@ -63,5 +78,21 @@ public class SignUpPageObject {
     public AccountPageObject selectSignUpButton() {
         getSignUpButton().click();
         return page(AccountPageObject.class);
+    }
+
+    public String getFormTitleText() {
+        return getFormTitle().getText();
+    }
+
+    public boolean isSignUpButtonVisible() {
+        return getSignUpButton().isDisplayed();
+    }
+
+    public ElementsCollection getAllErrorMessages() {
+        return getErrorList();
+    }
+
+    public void waitUntilErrorMessagesAreDisplayed() {
+        getErrorField().waitUntil(Condition.visible, 5000);
     }
 }

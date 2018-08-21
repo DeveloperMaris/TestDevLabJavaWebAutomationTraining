@@ -1,7 +1,10 @@
 package stepdefinitions;
 
+import cucumber.api.PendingException;
 import cucumber.api.java.en.*;
 import general.TestContext;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class SignupSteps {
 
@@ -67,4 +70,16 @@ public class SignupSteps {
         test.getSignUpPage().selectSignUpButton();
     }
 
+    @And("^Sign Up page is opened$")
+    public void signUpPageIsOpened() {
+        assertThat(test.getSignUpPage().getFormTitleText()).isEqualTo("SIGN UP");
+        assertThat(test.getSignUpPage().isSignUpButtonVisible()).isTrue();
+    }
+
+    @Then("^error messages are displayed$")
+    public void errorMessagesAreDisplayed() {
+        test.getSignUpPage().waitUntilErrorMessagesAreDisplayed();
+        assertThat(test.getSignUpPage().getAllErrorMessages()).hasSize(5);
+        assertThat(test.getSignUpPage().getAllErrorMessages().toString()).contains("The First name field is required.");
+    }
 }

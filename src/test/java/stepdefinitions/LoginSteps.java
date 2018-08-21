@@ -1,7 +1,10 @@
 package stepdefinitions;
 
+import cucumber.api.PendingException;
 import cucumber.api.java.en.*;
 import general.TestContext;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class LoginSteps {
 
@@ -29,5 +32,14 @@ public class LoginSteps {
     @And("^I select Login button in Login Page$")
     public void iSelectLoginButton() {
         test.getLoginPage().selectLoginButton();
+    }
+
+    @And("^Login page is opened$")
+    public void loginPageIsOpened() {
+        test.getNavigation().waitUntilPageLoadingIsFinished();
+        test.getLoginPage().waitUntilLoginFormIsLoaded();
+
+        assertThat(test.getLoginPage().getFormTitleText()).isEqualTo("LOGIN");
+        assertThat(test.getLoginPage().isLoginButtonVisible()).isTrue();
     }
 }
