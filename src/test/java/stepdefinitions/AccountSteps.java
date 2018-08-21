@@ -4,6 +4,8 @@ import cucumber.api.PendingException;
 import cucumber.api.java.en.*;
 import general.TestContext;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class AccountSteps {
 
     private TestContext test;
@@ -14,7 +16,10 @@ public class AccountSteps {
 
     @Then("^user account page is opened$")
     public void userAccountPageIsOpened() {
-        System.out.println("ACCOUNT PAGE IS OPENED");
+        test.getNavigation().waitUntilPageLoadingIsFinished();
+
+        assertThat(test.getAccountPage().getAccountName()).isEqualTo(test.getUser().getFirstName());
+        assertThat(test.getAccountPage().getAccountLastname()).isEqualTo(test.getUser().getLastName());
     }
 
     @And("^I logout$")

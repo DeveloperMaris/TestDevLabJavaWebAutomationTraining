@@ -1,5 +1,6 @@
 package pages.header;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 import pages.account.AccountPageObject;
@@ -36,6 +37,14 @@ public class NavigationPageObject {
         return $(By.xpath("//nav/descendant::a[contains(text(), '" + username + "')]"));
     }
 
+    private SelenideElement getLogoImageLocation() {
+        return $("a.navbar-brand img");
+    }
+
+    private SelenideElement getLoadingIndicator() {
+        return $("#preloader");
+    }
+
     public BookHotelsPageObject selectHomeButton() {
         getHomeButton().click();
         return page(BookHotelsPageObject.class);
@@ -63,6 +72,18 @@ public class NavigationPageObject {
     public AccountPageObject selectUserAccountButton(String username) {
         getUserAccountButton(username).click();
         return page(AccountPageObject.class);
+    }
+
+    public boolean isLogoVisible() {
+        return getLogoImageLocation().isDisplayed();
+    }
+
+    public boolean isMyAccountButtonVisible() {
+        return getMyAccountButton().isDisplayed();
+    }
+
+    public void waitUntilPageLoadingIsFinished() {
+        getLoadingIndicator().waitUntil(Condition.attribute("style", "display: none;"), 5000);
     }
 
 }
