@@ -1,10 +1,13 @@
 package pages.landingPage;
 
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 import pages.hotel.HotelDetailsPageObject;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selenide.page;
 
 public class BookHotelsPageObject {
@@ -45,6 +48,14 @@ public class BookHotelsPageObject {
         return $("form[name='fCustomHotelSearch'] button[type='submit']");
     }
 
+    private ElementsCollection getHotelSearchList() {
+        return $$(".select2-result-sub li");
+    }
+
+    private SelenideElement getHotelSearchContainer() {
+        return $(".select2-result-sub");
+    }
+
     public void selectBookHotelsButton() {
         getBookHotelsButton().click();
     }
@@ -61,12 +72,12 @@ public class BookHotelsPageObject {
         getHotelElementFromList(hotel).click();
     }
 
-    public void enterCheckInDate(String day, String month, String year) {
-        getCheckInTextField().sendKeys(day + "/" + month + "/" + year);
+    public void enterCheckInDate(String date) {
+        getCheckInTextField().sendKeys(date);
     }
 
-    public void enterCheckOutDate(String day, String month, String year) {
-        getCheckOutTextField().sendKeys(day + "/" + month + "/" + year);
+    public void enterCheckOutDate(String date) {
+        getCheckOutTextField().sendKeys(date);
     }
 
     public void selectTravelersField() {
@@ -94,6 +105,16 @@ public class BookHotelsPageObject {
     public HotelDetailsPageObject selectHotelSubmitButton() {
         getHotelSubmitButton().click();
         return page(HotelDetailsPageObject.class);
+    }
+
+    public ElementsCollection getHotelsFromSearchResults() {
+        return getHotelSearchList();
+    }
+
+    public void waitUntilHotelsSearchResultsAreDisplayed() {
+        getHotelSearchContainer().waitUntil(Condition.visible, 5000);
+
+
     }
 
 }

@@ -5,6 +5,7 @@ import pages.account.AccountPageObject;
 import pages.header.NavigationPageObject;
 import pages.hotel.HotelDetailsPageObject;
 import pages.hotel.HotelReservationConfirmationPageObject;
+import pages.invoice.InvoicePageObject;
 import pages.landingPage.BookHotelsPageObject;
 import pages.login.LoginPageObject;
 import pages.signup.SignUpPageObject;
@@ -13,6 +14,7 @@ import pages.signup.SignUpPageObject;
 public class TestContext {
 
     private User user;
+    private Hotel hotel;
     private AccountPageObject accountPage;
     private NavigationPageObject navigation;
     private BookHotelsPageObject bookHotelsPage;
@@ -20,9 +22,11 @@ public class TestContext {
     private SignUpPageObject signUpPage;
     private HotelDetailsPageObject hotelDetailsPage;
     private HotelReservationConfirmationPageObject hotelReservationConfirmationPage;
+    private InvoicePageObject invoicePage;
 
     public TestContext() {
         this.user = new User();
+        this.hotel = new Hotel();
         this.accountPage = new AccountPageObject();
         this.navigation = new NavigationPageObject();
         this.bookHotelsPage = new BookHotelsPageObject();
@@ -30,6 +34,7 @@ public class TestContext {
         this.signUpPage = new SignUpPageObject();
         this.hotelDetailsPage = new HotelDetailsPageObject();
         this.hotelReservationConfirmationPage = new HotelReservationConfirmationPageObject();
+        this.invoicePage = new InvoicePageObject();
     }
 
 }
