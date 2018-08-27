@@ -1,5 +1,6 @@
 package stepdefinitions;
 
+import cucumber.api.PendingException;
 import cucumber.api.java.en.*;
 import general.TestContext;
 
@@ -13,20 +14,20 @@ public class HomepageSteps {
         this.test = testContext;
     }
 
-    @Given("^I have opened homepage$")
+    @Given("^Landing page is opened$")
     public void iHaveOpenedHomePage() {
         test.getNavigation().waitUntilPageLoadingIsFinished();
 
         assertThat(test.getNavigation().isLogoVisible()).isTrue();
-        assertThat(test.getNavigation().isMyAccountButtonVisible()).isTrue();
+//        assertThat(test.getNavigation().isMyAccountButtonVisible()).isTrue();
     }
 
-    @When("^I select My account menu$")
+    @When("^I select My Account button in Navigation bar$")
     public void iSelectMyAccountMenu() {
         test.getNavigation().selectMyAccountButton();
     }
 
-    @And("^I select Sign up button in Landing page")
+    @And("^I select Sign Up button in Navigation bar")
     public void iSelectSignUpButton() {
         test.getNavigation().selectSignUpButton();
     }
@@ -51,37 +52,50 @@ public class HomepageSteps {
 
     @And("^I enter ([^\\”]*) hotel$")
     public void iEnterHotelName(String hotel) {
-        test.getBookHotelsPage().enterHotelName(hotel);
+        test.getHotel().setHotelName(hotel);
+        test.getBookHotelsPage().enterHotelName(test.getHotel().getHotelName());
     }
 
-    @And("^I select hotel located in ([^\\”]*)")
-    public void iSelectHotelWithName(String hotelName) {
-        test.getBookHotelsPage().selectHotelFromList(hotelName);
+    @And("^I select hotel that is located in ([^\\”]*)")
+    public void iSelectHotelWithLocated(String location) {
+        test.getHotel().setLocation(location);
+        test.getBookHotelsPage().selectHotelFromList(test.getHotel().getLocation());
     }
 
     @And("^I select (\\w+).(\\w+).(\\w+) as Check in date$")
     public void iSelectAsCheckInDate(String day, String month, String year) {
-        test.getBookHotelsPage().enterCheckInDate(day, month, year);
+        test.getHotel().setCheckInDate(day + "/" + month + "/" + year);
+        test.getBookHotelsPage().enterCheckInDate(test.getHotel().getCheckInDate());
     }
 
     @And("^I select (\\w+).(\\w+).(\\w+) as Check out date$")
     public void iSelectAsCheckOutDate(String day, String month, String year) {
-        test.getBookHotelsPage().enterCheckOutDate(day, month, year);
+        test.getHotel().setCheckOutDate(day + "/" + month + "/" + year);
+        test.getBookHotelsPage().enterCheckOutDate(test.getHotel().getCheckOutDate());
     }
 
-    @And("^I select (\\w+) Adult and (\\w+) Children$")
+    @And("^I select (\\w+) Adult and (\\w+) Child$")
     public void iSelectAdultAndChildren(String adultCount, String childrenCount) {
+        test.getHotel().setAdultsCount(adultCount);
+        test.getHotel().setChildCount(childrenCount);
+
         test.getBookHotelsPage().selectTravelersField();
 
         test.getBookHotelsPage().selectTravelerAdultField();
-        test.getBookHotelsPage().enterTravelerAdultCount(adultCount);
+        test.getBookHotelsPage().enterTravelerAdultCount(test.getHotel().getAdultsCount());
 
         test.getBookHotelsPage().selectTravelerChildField();
-        test.getBookHotelsPage().enterTravelerChildCount(childrenCount);
+        test.getBookHotelsPage().enterTravelerChildCount(test.getHotel().getChildCount());
     }
 
     @And("^I select Search button$")
     public void iSelectSearchButton() {
         test.getBookHotelsPage().selectHotelSubmitButton();
+    }
+
+    @And("^correct amount of hotels is found$")
+    public void correctAmountOfHotelsIsFound() {
+        test.getBookHotelsPage().waitUntilHotelsSearchResultsAreDisplayed();
+        assertThat(test.getBookHotelsPage().getHotelsFromSearchResults()).hasSize(1);
     }
 }

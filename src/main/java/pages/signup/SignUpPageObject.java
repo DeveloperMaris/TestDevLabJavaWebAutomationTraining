@@ -51,6 +51,10 @@ public class SignUpPageObject {
         return $$(".alert-danger p");
     }
 
+    private SelenideElement getRotationLoader() {
+        return $("#rotatingDiv");
+    }
+
     public void enterFirstName(String firstName) {
         getFirstNameField().sendKeys(firstName);
     }
@@ -94,5 +98,9 @@ public class SignUpPageObject {
 
     public void waitUntilErrorMessagesAreDisplayed() {
         getErrorField().waitUntil(Condition.visible, 5000);
+    }
+
+    public void waitUntilSignUpFormLoadedIsGone() {
+        getRotationLoader().waitUntil(Condition.not(Condition.visible), 5000);
     }
 }
