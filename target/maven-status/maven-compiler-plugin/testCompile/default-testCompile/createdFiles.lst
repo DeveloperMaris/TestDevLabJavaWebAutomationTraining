@@ -1,6 +1,9 @@
 stepdefinitions/Hooks.class
 testrunner/TestRunner.class
+stepdefinitions/HotelConfirmationSteps.class
 stepdefinitions/AccountSteps.class
+stepdefinitions/InvoiceSteps.class
 stepdefinitions/HomepageSteps.class
+stepdefinitions/HotelDetailsSteps.class
 stepdefinitions/LoginSteps.class
 stepdefinitions/SignupSteps.class

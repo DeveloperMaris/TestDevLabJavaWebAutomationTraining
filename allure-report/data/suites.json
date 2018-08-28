@@ -1,0 +1,21 @@
+{
+  "uid" : "98d3104e051c652961429bf95fa0b5d6",
+  "name" : "suites",
+  "children" : [ {
+    "name" : "This feature is about booking a hotel",
+    "children" : [ {
+      "name" : "Successful hotel booking",
+      "uid" : "915ec148003f91c6",
+      "parentUid" : "4aba9cbac12da8950c58bd50b751fd2b",
+      "status" : "passed",
+      "time" : {
+        "start" : 1535467580014,
+        "stop" : 1535467621725,
+        "duration" : 41711
+      },
+      "flaky" : false,
+      "parameters" : [ ]
+    } ],
+    "uid" : "4aba9cbac12da8950c58bd50b751fd2b"
+  } ]
+}

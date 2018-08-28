@@ -1,0 +1,25 @@
+{
+  "uid" : "ab17fc5a4eb3bca4b216b548c7f9fcbc",
+  "name" : "timeline",
+  "children" : [ {
+    "name" : "4887-MacBook-Pro-2016-macOS-10126-TDL.local",
+    "children" : [ {
+      "name" : "31333@4887-MacBook-Pro-2016-macOS-10126-TDL.local.main(1)",
+      "children" : [ {
+        "name" : "Successful hotel booking",
+        "uid" : "915ec148003f91c6",
+        "parentUid" : "fade7b175113930d86fe7ffd4bed6654",
+        "status" : "passed",
+        "time" : {
+          "start" : 1535467580014,
+          "stop" : 1535467621725,
+          "duration" : 41711
+        },
+        "flaky" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "fade7b175113930d86fe7ffd4bed6654"
+    } ],
+    "uid" : "d8a416b97269b90715f78dea7ecd8bc9"
+  } ]
+}

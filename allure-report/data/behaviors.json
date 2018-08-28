@@ -1,0 +1,25 @@
+{
+  "uid" : "b1a8273437954620fa374b796ffaacdd",
+  "name" : "behaviors",
+  "children" : [ {
+    "name" : "This feature is about booking a hotel",
+    "children" : [ {
+      "name" : "Successful hotel booking",
+      "children" : [ {
+        "name" : "Successful hotel booking",
+        "uid" : "915ec148003f91c6",
+        "parentUid" : "461ce6ac7f955528d28a140a6480383e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1535467580014,
+          "stop" : 1535467621725,
+          "duration" : 41711
+        },
+        "flaky" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "461ce6ac7f955528d28a140a6480383e"
+    } ],
+    "uid" : "332caa2d6b3f5196da9c448bfeb2e2ae"
+  } ]
+}
